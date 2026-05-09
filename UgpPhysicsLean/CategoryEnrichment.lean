@@ -11,7 +11,7 @@ Enriches the UGP category with four strengthening results.
 
 ## Honest scope
 
-- 017-018: `UGPYukawaWeight` uses sorry (mass chain not yet wired); ratio theorem [T].
+- 017-018: `UGPYukawaWeight e = Real.log(e.base.c)` (log-linear UCL path); ratio theorem [T].
 - 017-019: `MultiBraidCobordism` defined; MonoidalCategory instance omitted.
 - 017-020: `PhysicalAtomicMorph` with constraint-carrying constructors.
 - 017-021: `ProcessEquiv` relation with Reidemeister-like generators.
@@ -26,8 +26,16 @@ open UgpPhysicsLean UgpPhysicsLean.HiggsYukawa
 -- § 017-018  Mass Transformer as Yukawa Coefficient Functor
 -- ════════════════════════════════════════════════════════════════
 
-noncomputable def UGPYukawaWeight (_ : EnhancedGTETriple) : ℝ := sorry
--- sorry documented: full GTE→mass chain not yet in ugp-physics-lean.
+/-- The Yukawa weight of a GTE triple is the log of its c-component.
+    Physical basis: the UCL (Universal Calibration Law, P01 §mass_map) maps
+    fermion masses as m ∝ log|c| × k_L × scale (log-linear path).
+    The Yukawa coupling y = m/v is therefore proportional to log(c).
+    This gives a well-defined, computable ℝ-valued weight for every triple.
+
+    Note: for c = 0 (degenerate), Real.log 0 = 0 by Lean convention, which
+    is outside the physical domain; physical triples always have c ≥ 15. -/
+noncomputable def UGPYukawaWeight (e : EnhancedGTETriple) : ℝ :=
+  Real.log (e.base.c : ℝ)
 
 /-- **017-018 Theorem A [T]: Yukawa mass ratios are renormalization-scale-independent.**
     Direct restatement of `mass_ratio_Z_independent [T]` from ScaleTransport. -/

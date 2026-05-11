@@ -48,6 +48,7 @@ def cobordismComplexity (C : CobordismTopology) : ℕ :=
 def IsPrimitiveCobordism (T : CobordismTopology) : Prop :=
   cobordismComplexity T = 1
 
+set_option linter.unnecessarySeqFocus false in
 /-- **017-022 Main Theorem [T]: Primitive ↔ single-junction SM gauge vertex.** -/
 theorem primitive_cobordisms_are_exactly_sm_gauge_vertices (T : CobordismTopology) :
     IsPrimitiveCobordism T ↔

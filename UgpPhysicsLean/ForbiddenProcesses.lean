@@ -73,7 +73,7 @@ theorem proton_decay_dim4_forbidden (f_q f_l : ColoredFermion)
   -- sameSector (quark) (lepton) = false
   simp only [sameSector, isLepton, isQuark] at *
   cases hf1 : f_q.fermionType <;> cases hf2 : f_l.fermionType <;>
-    simp_all [isLepton, isQuark]
+    simp_all
 
 -- ════════════════════════════════════════════════════════════════
 -- §3  Dark sector isolation

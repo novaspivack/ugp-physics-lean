@@ -1,5 +1,5 @@
 import Mathlib
-import UgpLean.IPT.InformationProfitThreshold
+import UgpPhysicsLean.IPT.InformationProfitThreshold
 import UgpPhysicsLean.DiscreteAction
 
 /-!
@@ -22,7 +22,7 @@ PR-0 (`pr0_system/`) is a running implementation of the MFRR action (U+PT):
 
 ## Reference
 
-Spec 017-026. `IPT_threshold` in `UgpLean.IPT`. PR-0 in `pr0_system/`.
+Spec 017-026. `IPT_threshold` in `UgpPhysicsLean.IPT` (namespace: `UgpLean.IPT`). PR-0 in `pr0_system/`.
 -/
 
 namespace UgpPhysicsLean.MFRRAction
@@ -100,7 +100,7 @@ theorem total_dissonance_zero_iff {α : Type} (Df : DissonanceFunctional α)
 /-- **017-026 Theorem C [T]: Full PT condition = all four D-components vanish.** -/
 theorem full_pt_condition {α : Type} (Df : DissonanceFunctional α)
     (s : ReflexiveState α)
-    (hzero : ∃ t : ReflexiveState α, totalDissonance Df t = 0) :
+    (_hzero : ∃ t : ReflexiveState α, totalDissonance Df t = 0) :
     IsStationary (totalDissonance Df) s ↔
     Df.D_inc s = 0 ∧ Df.D_comp s = 0 ∧ Df.D_temp s = 0 ∧ Df.D_clos s = 0 := by
   simp [IsStationary, total_dissonance_zero_iff]

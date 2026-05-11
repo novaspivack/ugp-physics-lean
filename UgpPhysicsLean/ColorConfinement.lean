@@ -54,7 +54,7 @@ def ColorSinglet : List ColoredFermion → Prop
     A single quark cannot form a color singlet — it needs either
     a second quark (meson) or two more quarks (baryon). -/
 theorem isolated_quark_not_observable (q : ColoredFermion)
-    (hq : isQuark q.fermionType = true) :
+    (_hq : isQuark q.fermionType = true) :
     ¬ ColorSinglet [q] := by
   simp [ColorSinglet]
 
@@ -85,7 +85,7 @@ theorem isLepton_ne_isQuark (f : SMFermionType) :
 /-- A lepton pair cannot form a meson (leptons are not quarks). -/
 theorem lepton_pair_not_meson (l1 l2 : ColoredFermion)
     (hl1 : isLepton l1.fermionType = true)
-    (hl2 : isLepton l2.fermionType = true) :
+    (_hl2 : isLepton l2.fermionType = true) :
     ¬ IsMeson l1 l2 := by
   intro ⟨hq1, _⟩
   exact isLepton_ne_isQuark l1.fermionType ⟨hl1, hq1⟩

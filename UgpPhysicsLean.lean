@@ -24,6 +24,8 @@ import UgpPhysicsLean.ForbiddenProcesses
 import UgpPhysicsLean.IPT.InformationProfitThreshold
 import UgpPhysicsLean.GXT.H9SelfConsistency
 import UgpPhysicsLean.GXT.GoldenRatioFixedPoint
+import UgpPhysicsLean.GXT.U1DirectProof
+import UgpPhysicsLean.GXT.LieExpSurjective
 import UgpPhysicsLean.NullDiscipline.SaturationBarrier
 import UgpPhysicsLean.NullDiscipline.TheoremEligibility
 import UgpPhysicsLean.PSC.ThreeRouteForcing

@@ -177,8 +177,8 @@ We reduce this to a 1D-specific gap:
 
 This is strictly weaker (1D specialization, not the full n-dimensional theorem). -/
 
-/-- **Admitted axiom (more specific than original):**
-For a compact connected 1-dimensional Lie group G, the Lie exponential
+/-- **Admitted axiom (abstract G case, more specific than original):**
+For a compact connected 1-dimensional Lie group G (abstract), the Lie exponential
 map `exp_G : ℝ →* G` is surjective.
 
 Mathematical status: TRUE (standard Lie theory).
@@ -187,9 +187,15 @@ Mathematical status: TRUE (standard Lie theory).
 - For the 1D case this also follows from: any compact connected 1-manifold
   group is a quotient of ℝ with discrete kernel.
 
-Lean status: NOT YET IN MATHLIB.
+Lean status for ABSTRACT G: NOT YET IN MATHLIB.
 Needed PR: `LieGroup.exp_surjective_of_compact_connected` (or dim-1 case).
-This is STRICTLY WEAKER than the original sorry's dependency. -/
+This is STRICTLY WEAKER than the original sorry's dependency.
+
+**UPDATE (LieExpSurjective.lean):** For G = Circle specifically, this is now
+proved ZERO-SORRY in `LieExpSurjective.circle_exp_surjective_MAIN` via the
+open-subgroup-of-connected argument. The axiom below is only needed for the
+abstract case (general G). For the UGP application (U(1) = Circle), the
+axiom-free proof in LieExpSurjective.lean suffices completely. -/
 axiom lie_exp_surjective_of_compact_connected_dim1
     (G : Type*) [TopologicalSpace G] [Group G] [IsTopologicalGroup G]
     [CompactSpace G] [ConnectedSpace G]

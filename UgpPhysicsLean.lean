@@ -29,6 +29,7 @@ import UgpPhysicsLean.GXT.LieExpSurjective
 import UgpPhysicsLean.NullDiscipline.SaturationBarrier
 import UgpPhysicsLean.NullDiscipline.TheoremEligibility
 import UgpPhysicsLean.PSC.ThreeRouteForcing
+import UgpPhysicsLean.GXT.AsymptoticSparsity
 
 /-!
 # UgpPhysicsLean — Universal Generative Principle: Dynamics Formalization

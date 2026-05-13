@@ -5,10 +5,9 @@ package «ugp-physics-lean» where
   -- EPIC 17 — UGP Dynamics: Category, Cobordism, and Unified Architecture
   -- Builds on ugp-lean (EPIC 15 prerequisites) and imports Mathlib via shared cache.
 
--- Local path dependency on ugp-lean.
--- This gives us access to all UgpLean.* modules (GTE.FiberBundle, BraidAtlas.ChargeTheorem, etc.)
--- and reuses ugp-lean's pre-built .lake/build/ artifacts.
-require «ugp-lean» from "../ugp-lean"
+-- Git-pinned dependency on ugp-lean (switched from local path per SPEC_015_LT1 go-live step F).
+require «ugp-lean» from git
+  "https://github.com/novaspivack/ugp-lean" @ "ed01e6f5b18bcd965b943a765c1b64c446d75a8b"
 
 @[default_target]
 lean_lib «UgpPhysicsLean» where

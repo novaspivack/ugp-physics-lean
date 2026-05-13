@@ -63,4 +63,4 @@ lake build           # ~8200 jobs
 
 Paper 23 PDF and all specs in [ugp-physics](https://github.com/novaspivack/ugp-physics).
 
-Lean version: `v4.29.0-rc6` / Mathlib 4 / MIT License
+Lean version: `v4.29.1` / Mathlib 4 / MIT License

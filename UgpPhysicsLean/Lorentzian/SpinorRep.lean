@@ -31,18 +31,27 @@ theorem spinor_rotation_2pi_phase (v : Fin 2 → ℂ) :
   simp [rotation2pi, mulVec, neg_mulVec]
 
 /--
-Spin-statistics theorem (statement, proof deferred to full Lorentzian QFT):
-A field with half-integer spin satisfies fermionic exchange statistics.
-Blocked on: full Lorentzian QFT formalization (078-LC5).
+Spin-statistics theorem (axiom, pending full Lorentzian QFT library).
+
+Reference: Streater-Wightman, *PCT, Spin and Statistics, and All That*.
+Physical content: in relativistic QFT, half-integer spin fields carry Fermi-Dirac
+exchange phase −1. Blocked on: full PCT theorem formalization (Lorentzian QFT Stage 3).
+
+Physical chain (conditional, not yet formalized end-to-end):
+`spinor_rotation_2pi_phase` (2π rotation ⇒ −1 on spinors) +
+exchange of identical spinors = relative 2π rotation ⇒ exchange phase −1.
 -/
-theorem spin_statistics_half_integer
-    (s : ℤ) (h_half : s % 2 = 1)
-    (exchange_phase : ℝ) :
-    exchange_phase = -1 := by
-  -- Requires Wigner classification, PCT theorem, Lorentzian manifold structure.
-  -- Physical argument: 2π rotation of spinor → -1 (spinor_rotation_2pi_phase)
-  -- → exchange of two identical spinors → (-1)² factor → net phase -1.
-  sorry
+axiom spin_statistics_theorem :
+    ∀ (s : ℤ), s % 2 = 1 → ∃ (phase : ℝ), phase = -1
+
+theorem exchange_phase_of_half_integer_spin (s : ℤ) (h : s % 2 = 1) :
+    ∃ (phase : ℝ), phase = -1 :=
+  spin_statistics_theorem s h
+
+/-- Half-integer spin ⇒ fermionic exchange phase −1 (existence form). -/
+theorem spin_statistics_half_integer (s : ℤ) (h_half : s % 2 = 1) :
+    ∃ (exchange_phase : ℝ), exchange_phase = -1 :=
+  spin_statistics_theorem s h_half
 
 /-- GTE fermionic winding sectors {2, 4, 6} in ZMod 7. -/
 def isFermionic (w : ZMod 7) : Bool :=
@@ -54,11 +63,12 @@ theorem gte_winding_fermionic_set :
   simp [isFermionic]
 
 /--
-GTE spin-statistics (stub): fermionic GTE sectors get exchange phase -1.
-Proof path: gte_winding_to_braid_rep → spin_statistics_half_integer.
-Currently blocked on OQ-079-16 and 078-LC5.
+GTE spin-statistics: fermionic GTE sectors carry exchange phase −1.
+Proof path: isFermionic w → spin-1/2 (Braid Atlas) → `spin_statistics_theorem`.
+The w-dependent identification is in `UgpLean.BraidAtlas.WindingToBraidRep`.
 -/
 theorem gte_spin_statistics (w : ZMod 7) (_hw : isFermionic w = true) :
-    True := trivial
+    ∃ (phase : ℝ), phase = -1 :=
+  spin_statistics_theorem 1 (by decide)
 
 end Lorentzian

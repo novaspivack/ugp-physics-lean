@@ -33,14 +33,14 @@ def isLorentzMatrix (M : Matrix (Fin 4) (Fin 4) ℝ) : Prop :=
   Mᵀ * η * M = η
 
 theorem lorentz_identity : isLorentzMatrix (1 : Matrix (Fin 4) (Fin 4) ℝ) := by
-  simp [isLorentzMatrix, η, Matrix.transpose_one, Matrix.one_mul, Matrix.mul_one]
+  simp [isLorentzMatrix, η]
 
 private lemma minkowski_mul_reassoc (M N : Matrix (Fin 4) (Fin 4) ℝ) :
     N.transpose * M.transpose * η * (M * N) = N.transpose * (M.transpose * η * M) * N := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.mul_apply, Matrix.transpose_apply, η, diagonal, Fin.sum_univ_four]
-  all_goals ring_nf <;> ring
+  all_goals ring_nf
 
 theorem lorentz_closed_mul (M N : Matrix (Fin 4) (Fin 4) ℝ)
     (hM : isLorentzMatrix M) (hN : isLorentzMatrix N) :
@@ -62,12 +62,12 @@ theorem lorentz_inv_of_mul (M Minv : Matrix (Fin 4) (Fin 4) ℝ)
       Minv.transpose * η = Minv.transpose * (M.transpose * η * M) := step1
       _ = Minv.transpose * M.transpose * η * M := by rw [← Matrix.mul_assoc, ← Matrix.mul_assoc]
       _ = (M * Minv).transpose * η * M := by simp [Matrix.transpose_mul]
-      _ = η * M := by simp [hMMinv, Matrix.transpose_one, Matrix.one_mul]
+      _ = η * M := by simp [hMMinv, Matrix.transpose_one]
   calc
     Minv.transpose * η * Minv = (Minv.transpose * η) * Minv := by rw [Matrix.mul_assoc]
     _ = (η * M) * Minv := by rw [hmid]
     _ = η * (M * Minv) := by rw [Matrix.mul_assoc]
-    _ = η := by simp [hMMinv, Matrix.mul_one]
+    _ = η := by simp [hMMinv]
 
 /-- The Lorentz group: matrices preserving the Minkowski metric -/
 def LorentzGroup : Subgroup (GL (Fin 4) ℝ) where

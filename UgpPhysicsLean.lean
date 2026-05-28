@@ -30,6 +30,8 @@ import UgpPhysicsLean.NullDiscipline.SaturationBarrier
 import UgpPhysicsLean.NullDiscipline.TheoremEligibility
 import UgpPhysicsLean.PSC.ThreeRouteForcing
 import UgpPhysicsLean.GXT.AsymptoticSparsity
+import UgpPhysicsLean.Lorentzian.MinkowskiSpace
+import UgpPhysicsLean.Lorentzian.SpinorRep
 
 /-!
 # UgpPhysicsLean — Universal Generative Principle: Dynamics Formalization

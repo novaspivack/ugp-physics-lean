@@ -1,14 +1,53 @@
 # ugp-physics-lean
 
-**Lean 4 formalization of the UGP Interaction Skeleton Theorem (EPIC 17)**
+**General physics Lean 4 library for the UGP program.**
 
-This repository contains the Lean 4 proof library accompanying Paper 23:
+This repository provides formalizations of standard physics that serve as foundations for the GTE/UGP research program. The content here consists of established physics facts — geometry, spacetime structure, spinor representations, and general relativistic infrastructure — that are independent of GTE theory itself.
+
+---
+
+## Separation of concerns
+
+| Repository | What lives here |
+|---|---|
+| **ugp-physics-lean** (this repo) | Standard physics infrastructure: Lorentzian geometry, Minkowski spacetime, spinor representations, spin-statistics, general relativistic structures, and foundational physics facts not specific to GTE |
+| [**ugp-lean-exp**](https://github.com/novaspivack/ugp-lean-exp) → [**ugp-lean**](https://github.com/novaspivack/ugp-lean) | GTE/UGP-specific derivations: Z₇ algebra, PSC structure, CMCA dynamics, GTE particle spectrum, MDL initial state, RT formula, fermionic statistics, mass predictions |
+
+**What belongs here:** Any physics fact that is true independent of GTE theory — e.g., "2π rotation of a spinor gives −1 phase" is a standard fact about spinors; it does not require GTE to be stated or proved.
+
+**What does NOT belong here:** GTE-specific theorems. If a theorem depends essentially on Z₇, PSC, CMCA, the GTE orbit structure, or UGP-specific constructions, it belongs in ugp-lean-exp (active development) or ugp-lean (canonical).
+
+**Dependency direction:** ugp-lean-exp imports this library for standard physics infrastructure. ugp-physics-lean provides the foundation; ugp-lean-exp builds GTE theory on top.
+
+---
+
+## Current modules
+
+### Standard physics infrastructure
+
+| Module | Contents |
+|---|---|
+| `Lorentzian/MinkowskiSpace.lean` | Minkowski spacetime formalization |
+| `Lorentzian/SpinorRep.lean` | Spinor representations; spin-½ rotation phase |
+| `NullDiscipline/SaturationBarrier.lean` | Null structure and saturation barrier |
+| `NullDiscipline/TheoremEligibility.lean` | Null discipline for theorem eligibility |
+| `GXT/AsymptoticSparsity.lean` | Asymptotic sparsity of GXT structures |
+| `GXT/GoldenRatioFixedPoint.lean` | Golden ratio fixed-point structure |
+| `GXT/H9Attractivity.lean` | H9 attractor analysis |
+| `GXT/H9SelfConsistency.lean` | H9 self-consistency |
+| `GXT/LieExpSurjective.lean` | Surjectivity of the Lie exponential map |
+| `GXT/U1DirectProof.lean` | Direct proof of U(1) structure |
+| `IPT/InformationProfitThreshold.lean` | Information profit threshold |
+| `PSC/ThreeRouteForcing.lean` | Three-route forcing for Planck seed candidates |
+| `BraidAtlas/Cobordism.lean` | Braid atlas cobordism structure |
+
+### Paper 23 — Interaction Skeleton Theorem (17 modules)
+
+This repository also contains the Lean 4 proof library for Paper 23:
 
 > **"The UGP Interaction Skeleton Theorem: A Topological-Arithmetic Derivation  
 > of the Standard Model's Finite Renormalizable Vertex Structure"**  
 > Nova Spivack, April 2026.
-
-## What this proves
 
 All theorems are machine-verified with **zero sorry** for theorem-grade claims.
 (One disclosed bridge placeholder in `UGPYukawaWeight`, labeled [B] not [T].)
@@ -23,21 +62,6 @@ All theorems are machine-verified with **zero sorry** for theorem-grade claims.
 `dark_sector_gap_all_isolated` [T] — W∈{1,−2,4} fermions topologically isolated  
 `proton_decay_dim4_forbidden` [T] — dimension-4 proton decay forbidden  
 `all_sm_path_zero_action` [T] — SM interaction paths minimize S_UGP = 0
-
-## Dependency
-
-Builds on [`ugp-lean`](https://github.com/novaspivack/ugp-lean) (EPIC 15:
-BraidAtlas.ChargeTheorem, GTE.FiberBundle, ScaleTransport, IPT).
-
-## Build
-
-```bash
-lake exe cache get   # download Mathlib precompiled cache
-lake build           # ~8200 jobs
-# Expected: Build completed successfully. 0 errors.
-```
-
-## Modules (17)
 
 | Module | Key theorem | Paper § |
 |--------|-------------|---------|
@@ -59,8 +83,28 @@ lake build           # ~8200 jobs
 | `CategoryEnrichment` | `mirror_involution_squared_is_id` [T] | §2 |
 | `ForbiddenProcesses` | `dark_sector_gap_all_isolated` [T] | §8 |
 
+---
+
+## Dependencies
+
+Builds on [`ugp-lean`](https://github.com/novaspivack/ugp-lean) (EPIC 15:
+BraidAtlas.ChargeTheorem, GTE.FiberBundle, ScaleTransport, IPT).
+
+---
+
+## Build
+
+```bash
+lake exe cache get   # download Mathlib precompiled cache
+lake build           # ~8200 jobs
+# Expected: Build completed successfully. 0 errors.
+```
+
+---
+
 ## Companion
 
-Paper 23 PDF and all specs in [ugp-physics](https://github.com/novaspivack/ugp-physics).
+Paper 23 PDF and all specs in [ugp-physics](https://github.com/novaspivack/ugp-physics).  
+GTE/UGP-specific Lean formalizations: [ugp-lean-exp](https://github.com/novaspivack/ugp-lean-exp) (development) → [ugp-lean](https://github.com/novaspivack/ugp-lean) (canonical).
 
 Lean version: `v4.29.1` / Mathlib 4 / MIT License

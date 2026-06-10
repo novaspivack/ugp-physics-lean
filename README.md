@@ -10,14 +10,14 @@ This repository provides formalizations of standard physics that serve as founda
 
 | Repository | What lives here |
 |---|---|
-| **ugp-physics-lean** (this repo) | Standard physics infrastructure: Lorentzian geometry, Minkowski spacetime, spinor representations, spin-statistics, general relativistic structures, and foundational physics facts not specific to GTE |
-| [**ugp-lean-exp**](https://github.com/novaspivack/ugp-lean-exp) → [**ugp-lean**](https://github.com/novaspivack/ugp-lean) | GTE/UGP-specific derivations: Z₇ algebra, PSC structure, CMCA dynamics, GTE particle spectrum, MDL initial state, RT formula, fermionic statistics, mass predictions |
+| **ugp-physics-lean** (this repo) | Paper 23 (Interaction Skeleton Theorem) dynamics layer — IPT, GXT, NullDiscipline, PSC, and foundational physics facts not specific to GTE |
+| [**ugp-lean-exp**](https://github.com/novaspivack/ugp-lean-exp) → [**ugp-lean**](https://github.com/novaspivack/ugp-lean) | GTE/UGP-specific derivations: Z₇ algebra, PSC structure, CMCA dynamics, GTE particle spectrum, MDL initial state, RT formula, fermionic statistics, mass predictions; also hosts Lorentzian/gravity infrastructure (`UgpLean.Gravity`) |
 
-**What belongs here:** Any physics fact that is true independent of GTE theory — e.g., "2π rotation of a spinor gives −1 phase" is a standard fact about spinors; it does not require GTE to be stated or proved.
+**What belongs here:** Physics facts specific to the UGP Paper 23 dynamics layer — IPT, GXT, NullDiscipline, PSC, and the Interaction Skeleton Theorem proof modules.
 
-**What does NOT belong here:** GTE-specific theorems. If a theorem depends essentially on Z₇, PSC, CMCA, the GTE orbit structure, or UGP-specific constructions, it belongs in ugp-lean-exp (active development) or ugp-lean (canonical).
+**What does NOT belong here:** GTE-specific theorems, and standard Lorentzian/spinor/Wald-entropy infrastructure (those now live in `UgpLean.Gravity`).
 
-**Dependency direction:** ugp-lean-exp imports this library for standard physics infrastructure. ugp-physics-lean provides the foundation; ugp-lean-exp builds GTE theory on top.
+**Dependency direction:** ugp-physics-lean imports ugp-lean for GTE prerequisites. The Lorentzian modules (`MinkowskiSpace`, `SpinorRep`, `WaldEntropy`) were moved to `UgpLean.Gravity` in ugp-lean to eliminate the prior cyclic dependency.
 
 ---
 
@@ -27,8 +27,6 @@ This repository provides formalizations of standard physics that serve as founda
 
 | Module | Contents |
 |---|---|
-| `Lorentzian/MinkowskiSpace.lean` | Minkowski spacetime formalization |
-| `Lorentzian/SpinorRep.lean` | Spinor representations; spin-½ rotation phase |
 | `NullDiscipline/SaturationBarrier.lean` | Null structure and saturation barrier |
 | `NullDiscipline/TheoremEligibility.lean` | Null discipline for theorem eligibility |
 | `GXT/AsymptoticSparsity.lean` | Asymptotic sparsity of GXT structures |
@@ -40,6 +38,8 @@ This repository provides formalizations of standard physics that serve as founda
 | `IPT/InformationProfitThreshold.lean` | Information profit threshold |
 | `PSC/ThreeRouteForcing.lean` | Three-route forcing for Planck seed candidates |
 | `BraidAtlas/Cobordism.lean` | Braid atlas cobordism structure |
+
+> **Note:** The Lorentzian infrastructure (`MinkowskiSpace`, `SpinorRep`, `WaldEntropy`) was moved to `UgpLean.Gravity` in [ugp-lean](https://github.com/novaspivack/ugp-lean) to eliminate the cyclic Lake dependency that previously existed between the two repos. These modules are now at `UgpLean.Gravity.MinkowskiSpace`, `UgpLean.Gravity.SpinorRep`, and `UgpLean.Gravity.WaldEntropy`.
 
 ### Paper 23 — Interaction Skeleton Theorem (17 modules)
 

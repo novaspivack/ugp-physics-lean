@@ -6,12 +6,25 @@ This repository provides formalizations of standard physics that serve as founda
 
 ---
 
+## Research program
+
+This library is part of the UGP Physics research program by [Nova Spivack](https://www.novaspivack.com/).
+
+| Link | Description |
+|---|---|
+| [Research page](https://www.novaspivack.com/research/) | Full index of all papers, programs, and Lean archives |
+| [UGP Physics programme](https://www.novaspivack.com/research/physics-program) | The UGP Physics research programme |
+| [Complete GTE Framework](https://doi.org/10.5281/zenodo.20560550) | Paper 48 — the synthesis monograph this library contributes to |
+| [Zenodo program hub](https://doi.org/10.5281/zenodo.20644340) | Citable DOI hub for the UGP Physics program |
+
+---
+
 ## Separation of concerns
 
 | Repository | What lives here |
 |---|---|
 | **ugp-physics-lean** (this repo) | Paper 23 (Interaction Skeleton Theorem) dynamics layer — IPT, GXT, NullDiscipline, PSC, and foundational physics facts not specific to GTE |
-| [**ugp-lean-exp**](https://github.com/novaspivack/ugp-lean-exp) → [**ugp-lean**](https://github.com/novaspivack/ugp-lean) | GTE/UGP-specific derivations: Z₇ algebra, PSC structure, CMCA dynamics, GTE particle spectrum, MDL initial state, RT formula, fermionic statistics, mass predictions; also hosts Lorentzian/gravity infrastructure (`UgpLean.Gravity`) |
+| [**ugp-lean**](https://github.com/novaspivack/ugp-lean) | GTE/UGP-specific derivations: Z₇ algebra, PSC structure, CMCA dynamics, GTE particle spectrum, MDL initial state, RT formula, fermionic statistics, mass predictions; also hosts Lorentzian/gravity infrastructure (`UgpLean.Gravity`) |
 
 **What belongs here:** Physics facts specific to the UGP Paper 23 dynamics layer — IPT, GXT, NullDiscipline, PSC, and the Interaction Skeleton Theorem proof modules.
 
@@ -105,6 +118,6 @@ lake build           # ~8200 jobs
 ## Companion
 
 Paper 23 PDF and all specs in [ugp-physics](https://github.com/novaspivack/ugp-physics).  
-GTE/UGP-specific Lean formalizations: [ugp-lean-exp](https://github.com/novaspivack/ugp-lean-exp) (development) → [ugp-lean](https://github.com/novaspivack/ugp-lean) (canonical).
+GTE/UGP-specific Lean formalizations: [ugp-lean](https://github.com/novaspivack/ugp-lean).
 
-Lean version: `v4.29.1` / Mathlib 4 / MIT License
+Lean version: `v4.29.0-rc6` / Mathlib v4.29.1 / MIT License
